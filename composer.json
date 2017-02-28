@@ -1,0 +1,13 @@
+{
+  "name": "xcom-nl/hexspoor-export",
+  "description": "Exports order data to hexspoor via ftp",
+  "keywords": ["hexspoor"],
+  "require": {
+    "php": ">=5.3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hexspoor\\" : "."
+    }
+  }
+}
