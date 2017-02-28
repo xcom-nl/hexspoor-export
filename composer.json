@@ -2,6 +2,13 @@
   "name": "xcom-nl/hexspoor-export",
   "description": "Exports order data to hexspoor via ftp",
   "keywords": ["hexspoor"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kim Peeters",
+      "email": "kim@x-com.nl"
+    }
+  ],
   "require": {
     "php": ">=5.3.3"
   },

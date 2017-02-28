@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of xcom-nl/hexspoor-export.
+ *
+ * (c) Kim Peeters <kim@x-com.nl>
+  *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Hexspoor\Transport;
 
@@ -33,10 +41,11 @@ class FtpTransport implements TransportInterface
 
     /**
      * FtpTransport constructor.
+     *
      * @param string $server
      * @param string $user
      * @param string $pass
-     * @param int $port
+     * @param int    $port
      */
     public function __construct($server, $user, $pass)
     {
@@ -48,7 +57,7 @@ class FtpTransport implements TransportInterface
     /**
      * @param int $port
      */
-    public function setPort($port=21)
+    public function setPort($port = 21)
     {
         $this->port = $port;
     }
@@ -79,21 +88,21 @@ class FtpTransport implements TransportInterface
 
     public function send($data)
     {
-        if ( !is_resource($this->ftp) ) {
+        if (!is_resource($this->ftp)) {
             $this->connect();
         }
 
-        $fp = fopen('php://temp','r+');
-        if ( !$fp ) {
+        $fp = fopen('php://temp', 'r+');
+        if (!$fp) {
             throw new TransportException('Failed to create temporary file');
         }
 
         fputs($fp, $data);
-        fseek($fp,0);
+        fseek($fp, 0);
 
-        $remoteFile = ltrim($this->destinationPath.'/order-'.(sha1($data)).'.xml','/');
+        $remoteFile = ltrim($this->destinationPath.'/order-'.(sha1($data)).'.xml', '/');
 
-        if ( !ftp_fput($this->ftp, $remoteFile, $fp, FTP_ASCII, 0) ) {
+        if (!ftp_fput($this->ftp, $remoteFile, $fp, FTP_ASCII, 0)) {
             throw new TransportException('Failed to upload file');
         }
 
@@ -107,7 +116,7 @@ class FtpTransport implements TransportInterface
             throw new TransportException('Failed to connect to server');
         }
 
-        if ( !ftp_login($this->ftp, $this->user, $this->pass) ) {
+        if (!ftp_login($this->ftp, $this->user, $this->pass)) {
             throw new TransportException('Failed to login');
         }
 
