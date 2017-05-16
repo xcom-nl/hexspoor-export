@@ -193,7 +193,7 @@ class OrderDetails
     {
         return <<<EOX
 <bestelling>
-    <shopid>{$this->shopId}<shopid>
+    <shopid>{$this->shopId}</shopid>
     <timestamp>{$this->timestamp}</timestamp>
     <referentie>{$this->reference}</referentie>
     <opmerking>{$this->note}</opmerking>
